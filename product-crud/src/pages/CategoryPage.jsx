@@ -16,6 +16,7 @@ function CategoryPage() {
             const categoriesData = await getAllCategories();
             setCategories(categoriesData);
         } catch (error) {
+            alert(error.message)
             console.error('Error fetching categories:', error);
         }
     };

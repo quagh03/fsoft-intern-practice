@@ -17,7 +17,8 @@ function ProductPage() {
           const productsData = await getAllProducts();
           setProducts(productsData);
       } catch (error) {
-          console.error('Error fetching products:', error);
+        alert(error.message)
+        console.error('Error fetching products:', error);
       }
   };
 

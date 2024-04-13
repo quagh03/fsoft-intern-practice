@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { getAllCategories } from '../../services/CategoryService';
 
 const CategoryForm = ({  onCancel, isUpdate, initialData, onUpdate, onCreate }) => {
     const [categoryName, setCategoryName] = useState('');
