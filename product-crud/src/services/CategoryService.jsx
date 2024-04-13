@@ -21,4 +21,31 @@ const deleteCategory = async (id) => {
     }
 };
 
-export { getAllCategories,  deleteCategory };
+const getCategoryById = async (id) => {
+    try{
+        const response = await axios.get(`${API_URL}/${id}`);
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+};
+
+const createCategory = async (category) => {
+    try{
+        const response = await axios.post(`${API_URL}`, category);
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+};
+
+const updateCategory = async (category) => {
+    try{
+        const response = await axios.put(`${API_URL}/${category.id}`, category);
+        return response.data;
+    }catch(error){
+        throw error;
+    }
+}
+
+export { getAllCategories,  deleteCategory, getCategoryById, createCategory, updateCategory};

@@ -7,6 +7,8 @@ import org.example.productcrudbe.models.Category;
 import org.example.productcrudbe.models.Product;
 import org.example.productcrudbe.repositories.CategoryRepository;
 import org.example.productcrudbe.repositories.ProductRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,7 @@ import java.util.List;
 public class ProductService implements IProductService{
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ModelMapper mapper;
 
     @Override
     public List<Product> getAllProducts() {
@@ -59,14 +62,14 @@ public class ProductService implements IProductService{
         Category category = categoryRepository.findById(product.getCategory()).orElseThrow(
                 () -> new EntityNotFoundException("Category with id " + product.getCategory() + " not found")
         );
-        Product createdProduct = new Product();
 
-        createdProduct.setProductName(product.getProductName());
-        createdProduct.setPrice(product.getPrice());
-        createdProduct.setProductColor(product.getProductColor());
-        createdProduct.setCategory(category);
+        Product createProduct = new Product();
 
-        return productRepository.save(createdProduct);
+        mapper.map(product, createProduct);
+
+        createProduct.setCategory(category);
+
+        return productRepository.save(createProduct);
     }
 
 }
