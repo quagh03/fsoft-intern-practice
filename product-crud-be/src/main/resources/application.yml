@@ -14,3 +14,7 @@ open:
     description: "A simple CRUD API for managing products and categories using JWT"
 api:
   prefix: "/api/v1"
+
+jwt:
+  expiration: 2592000
+  secretKey: jiNGAcEduo0hWA3dHKOUZn5Mkbarli4oyLPnc3EpXes=
